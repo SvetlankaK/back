@@ -22,10 +22,9 @@ public class UserController {
     }
 
     @PostMapping("/users")
-    User create(@RequestBody User user) {
-        return service.create(user);
+    void create(@RequestBody User user) {
+        service.create(user);
     }
-
 
     @GetMapping("/users/{id}")
     User findById(@PathVariable Long id) {
@@ -33,20 +32,18 @@ public class UserController {
 
     }
 
-    @GetMapping("/users/{userLogin}")
-    User findByLogin(@PathVariable String userLogin) {
+    @GetMapping()
+    User findByLogin(@RequestParam(value = "userLogin") String userLogin) {
         return service.findByLogin(userLogin);
-
     }
 
     @PutMapping("/users/{id}")
     User update(@RequestBody User user, @PathVariable Long id) {
-        User temp = service.findById(id);
-        return service.update(user);
+        return service.update(user, id);
     }
 
     @DeleteMapping("/users/{id}")
-    void deleteUser(@PathVariable Long id) {
+    void delete(@PathVariable Long id) {
         service.delete(id);
     }
 
