@@ -1,4 +1,4 @@
-package com.svetakvetko.demo.domain;
+package com.svetakvetko.domain;
 
 import java.util.ArrayList;
 import java.util.List;

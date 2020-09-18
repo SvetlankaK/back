@@ -1,4 +1,4 @@
-package com.svetakvetko.demo.config;
+package com.svetakvetko.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

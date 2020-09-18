@@ -1,4 +1,4 @@
-package com.svetakvetko.demo.domain;
+package com.svetakvetko.domain;
 
 public class Role {
     private long id;

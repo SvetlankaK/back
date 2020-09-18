@@ -1,7 +1,7 @@
-package com.svetakvetko.demo.controller;
+package com.svetakvetko.controller;
 
-import com.svetakvetko.demo.domain.User;
-import com.svetakvetko.demo.service.UserServiceImpl;
+import com.svetakvetko.domain.User;
+import com.svetakvetko.service.UserService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -13,7 +13,7 @@ import java.util.Collection;
 public class UserController {
 
     @Autowired
-    private UserServiceImpl service;
+    private UserService service;
 
 
     @GetMapping("/users")
@@ -38,8 +38,8 @@ public class UserController {
     }
 
     @PutMapping("/users/{id}")
-    User update(@RequestBody User user, @PathVariable Long id) {
-        return service.update(user, id);
+    void update(@RequestBody User user, @PathVariable Long id) {
+        service.update(user);
     }
 
     @DeleteMapping("/users/{id}")

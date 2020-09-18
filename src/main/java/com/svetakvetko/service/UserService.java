@@ -1,6 +1,6 @@
-package com.svetakvetko.demo.service;
+package com.svetakvetko.service;
 
-import com.svetakvetko.demo.domain.User;
+import com.svetakvetko.domain.User;
 
 import java.util.List;
 
@@ -14,7 +14,7 @@ public interface UserService {
 
     List<User> findAll();
 
-    User update(User user, long userId);
+    void update(User user);
 
     User findByLogin(String userLogin);
 
