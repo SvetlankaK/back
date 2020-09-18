@@ -1,6 +1,5 @@
 package com.svetakvetko.demo.controller;
 
-import com.svetakvetko.demo.domain.Role;
 import com.svetakvetko.demo.domain.User;
 import com.svetakvetko.demo.service.UserServiceImpl;
 
@@ -8,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Collection;
-import java.util.Collections;
 
 
 @RestController
@@ -18,36 +16,36 @@ public class UserController {
     private UserServiceImpl service;
 
 
-    @GetMapping("/Users")
+    @GetMapping("/users")
     Collection<User> findAll() {
-        return Collections.singletonList(new User("Sveta", "gfhjkm", Collections.singletonList(new Role(1, "admin")), "email@com", "Sveta", "Kvetko", 3333, "06.04.200"));
+        return service.findAll();
     }
 
-    @PostMapping("/Users")
+    @PostMapping("/users")
     User create(@RequestBody User user) {
         return service.create(user);
     }
 
 
-    @GetMapping("/Users/{id}")
+    @GetMapping("/users/{id}")
     User findById(@PathVariable Long id) {
         return service.findById(id);
 
     }
 
-    @GetMapping("/Users/{userLogin}")
+    @GetMapping("/users/{userLogin}")
     User findByLogin(@PathVariable String userLogin) {
         return service.findByLogin(userLogin);
 
     }
 
-    @PutMapping("/Users/{id}")
+    @PutMapping("/users/{id}")
     User update(@RequestBody User user, @PathVariable Long id) {
-        return service.findById(id);
-
+        User temp = service.findById(id);
+        return service.update(user);
     }
 
-    @DeleteMapping("/Users/{id}")
+    @DeleteMapping("/users/{id}")
     void deleteUser(@PathVariable Long id) {
         service.delete(id);
     }

@@ -102,7 +102,7 @@ public class User {
         this.userId = userId;
     }
 
-    public User(String userLogin, String password, List<Role> role, String email, String name, String surname, double salary, String dateOfBirth) {
+    public User(String userLogin, String password, List<Role> role, String email, String name, String surname, double salary, String dateOfBirth, Long id) {
 
         this.userLogin = userLogin;
         this.password = password;
@@ -115,6 +115,7 @@ public class User {
         this.surname = surname;
         this.salary = salary;
         this.dateOfBirth = dateOfBirth;
+        this.userId = id;
     }
 
     public User() {

@@ -4,16 +4,26 @@ import com.svetakvetko.demo.domain.Role;
 import com.svetakvetko.demo.domain.User;
 import org.springframework.stereotype.Service;
 
-import java.util.Collection;
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 
 @Service
 public class UserServiceImpl implements UserService {
 
+    private static List<User> fakeUsers = new ArrayList<>();
+
+    static {
+        Collections.addAll(fakeUsers,
+                new User("Sveta", "gfhjkm", Collections.singletonList(new Role(1, "admin")), "email@com", "Sveta", "Kvetko", 3333, "06.04.2000", (long) 1),
+                new User("Sveta", "gfhjkm", Collections.singletonList(new Role(1, "admin")), "email@com", "Sveta", "Kvetko", 3333, "06.04.2000", (long) 3),
+                new User("Sveta", "gfhjkm", Collections.singletonList(new Role(1, "admin")), "email@com", "Sveta", "Kvetko", 3333, "06.04.2000", (long) 3),
+                new User("Sveta", "gfhjkm", Collections.singletonList(new Role(1, "admin")), "email@com", "Sveta", "Kvetko", 3333, "06.04.2000", (long) 4));
+    }
 
     @Override
     public User create(User user) {
-        return new User("Sveta", "gfhjkm",  Collections.singletonList(new Role(1, "admin")) , "email@com", "Sveta", "Kvetko", 3333, "06.04.200");
+        return new User("Sveta", "gfhjkm", Collections.singletonList(new Role(1, "admin")), "email@com", "Sveta", "Kvetko", 3333, "06.04.2000", (long) 1);
     }
 
     @Override
@@ -31,13 +41,14 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Collection<User> findAll() {
-        return null;
+    public List<User> findAll() {
+        return new ArrayList<>(fakeUsers);
     }
 
     @Override
-    public void update(User user) {
+    public User update(User user) {
 
+        return user;
     }
 
     @Override
