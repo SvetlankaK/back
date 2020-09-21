@@ -1,6 +1,6 @@
 package com.svetakvetko.service;
 
-import com.svetakvetko.domain.Role;
+
 import com.svetakvetko.domain.User;
 import com.svetakvetko.mapper.RoleMapper;
 import com.svetakvetko.mapper.UserMapper;
