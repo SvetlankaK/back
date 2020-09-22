@@ -1,6 +1,8 @@
 package com.svetakvetko.domain;
 
-public class Role {
+import org.springframework.security.core.GrantedAuthority;
+
+public class Role implements GrantedAuthority {
     private long id;
 
     private String roleName;
@@ -26,4 +28,8 @@ public class Role {
         this.roleName = roleName;
     }
 
+    @Override
+    public String getAuthority() {
+        return getRoleName();
+    }
 }

@@ -5,6 +5,8 @@ import com.svetakvetko.domain.User;
 import com.svetakvetko.mapper.RoleMapper;
 import com.svetakvetko.mapper.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
@@ -80,4 +82,16 @@ public class UserServiceImpl implements UserService {
         user.setRole(roleService.getRolesById(user.getUserId()));
         return user;
     }
+
+    @Override
+    public User loadUserByUsername(String userLogin) throws UsernameNotFoundException {
+        User user = findByLogin(userLogin);
+        if (user == null) {
+            throw new UsernameNotFoundException("User not found");
+        }
+        return user;
+    }
+
 }
+
+
