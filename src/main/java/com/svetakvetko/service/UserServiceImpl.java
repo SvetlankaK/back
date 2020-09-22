@@ -63,10 +63,11 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void update(User user, long userId) {
+        user.setUserId(userId);
         userMapper.update(user);
         Map<String, Object> userRole = new HashMap();
         roleMapper.deleteRolesById(userId);
-        userRole.put("userId", user.getUserId());
+        userRole.put("userId", userId);
         for (int i = 0; i < user.getRole().size(); i++) {
             userRole.put("roleId", user.getRole().get(i).getId());
             roleMapper.addRole(userRole);
