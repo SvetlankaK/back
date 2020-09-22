@@ -1,4 +1,4 @@
-CREATE DATABASE servletapp WITH OWNER postgres;
+CREATE DATABASE angular WITH OWNER postgres;
 
 
 CREATE SCHEMA IF NOT EXISTS webapp;

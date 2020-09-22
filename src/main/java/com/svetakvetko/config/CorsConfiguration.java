@@ -14,16 +14,14 @@ import org.springframework.web.servlet.config.annotation.*;
 import java.util.List;
 
 @Configuration
-public class CorsConfiguration
-{
+public class CorsConfiguration {
     @Bean
-    public WebMvcConfigurer corsConfigurer()
-    {
+    public WebMvcConfigurer corsConfigurer() {
         return new WebMvcConfigurer() {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/**").allowedOrigins("http://localhost:4200")
-                .allowedMethods("GET","POST","DELETE");
+                        .allowedMethods("GET", "POST", "DELETE");
             }
 
             @Override

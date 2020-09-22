@@ -44,7 +44,9 @@ public class UserServiceImpl implements UserService {
     @Override
     public User findById(Long userId) {
         User user = userMapper.findById(userId);
-        user.setRole(roleService.getRolesById(userId));
+        if (user != null) {
+            user.setRole(roleService.getRolesById(userId));
+        }
         return user;
     }
 
@@ -60,10 +62,10 @@ public class UserServiceImpl implements UserService {
 
 
     @Override
-    public void update(User user) {
+    public void update(User user, long userId) {
         userMapper.update(user);
         Map<String, Object> userRole = new HashMap();
-        roleMapper.deleteRolesById(user.getUserId());
+        roleMapper.deleteRolesById(userId);
         userRole.put("userId", user.getUserId());
         for (int i = 0; i < user.getRole().size(); i++) {
             userRole.put("roleId", user.getRole().get(i).getId());

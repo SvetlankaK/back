@@ -10,38 +10,39 @@ import java.util.Collection;
 
 
 @RestController
+@RequestMapping("/users")
 public class UserController {
 
     @Autowired
     private UserService service;
 
 
-    @GetMapping("/users")
+    @GetMapping()
     Collection<User> findAll() {
         return service.findAll();
     }
 
-    @PostMapping("/users")
+    @PostMapping()
     void create(@RequestBody User user) {
         service.create(user);
     }
 
-    @GetMapping("/users/{userId}")
+    @GetMapping("/{userId}")
     User findById(@PathVariable Long userId) {
         return service.findById(userId);
     }
 
-    @GetMapping()
-    User findByLogin(@RequestParam(value = "userLogin") String userLogin) {
+    @GetMapping("/login/{userLogin}")
+    User findByLogin(@PathVariable String userLogin) {
         return service.findByLogin(userLogin);
     }
 
-    @PutMapping("/users/{userId}")
+    @PutMapping("/{userId}")
     void update(@RequestBody User user, @PathVariable Long userId) {
-        service.update(user);
+        service.update(user, userId);
     }
 
-    @DeleteMapping("/users/{userId}")
+    @DeleteMapping("/{userId}")
     void delete(@PathVariable Long userId) {
         service.delete(userId);
     }

@@ -14,7 +14,7 @@ public interface UserService {
 
     List<User> findAll();
 
-    void update(User user);
+    void update(User user,long userId);
 
     User findByLogin(String userLogin);
 
