@@ -44,35 +44,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
 
-//    @Override
-//    protected void configure(HttpSecurity httpSecurity) throws Exception {
-//        httpSecurity
-//                .csrf()
-//                .disable()
-//                .authorizeRequests()
-//                .antMatchers("/").permitAll()
-//                .antMatchers("/registration").permitAll()
-//                .antMatchers("/login").permitAll()
-//                .antMatchers("/welcome").fullyAuthenticated()
-//                .antMatchers("/editUser").hasAuthority("admin")
-//                .antMatchers("/delete").hasAuthority("admin")
-//                .antMatchers("/users").hasAuthority("admin")
-//                .anyRequest().authenticated()
-//                .and()
-//                .formLogin()
-//                .loginPage("/login")
-//                .failureUrl("/login?error=true")
-//                .defaultSuccessUrl("/welcome")
-//                .permitAll()
-//                .and()
-//                .logout()
-//                .permitAll()
-//                .logoutSuccessUrl("/login")
-//                .and()
-//                .exceptionHandling().accessDeniedPage("/accessDenied");
-//    }
-
-
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.cors().and().csrf().disable()
