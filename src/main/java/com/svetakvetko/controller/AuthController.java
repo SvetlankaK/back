@@ -1,5 +1,6 @@
-package com.svetakvetko.config;
+package com.svetakvetko.controller;
 
+import com.svetakvetko.config.JwtUtils;
 import com.svetakvetko.domain.User;
 import com.svetakvetko.mapper.RoleMapper;
 import com.svetakvetko.mapper.UserMapper;
@@ -21,26 +22,16 @@ import java.util.stream.Collectors;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
-///todo не понимаю какой путь тут должен быть
 @RequestMapping("/api/auth")
 public class AuthController {
+
     @Autowired
     AuthenticationManager authenticationManager;
 
-    @Autowired
-    UserMapper userMapper;
-
-    @Autowired
-    RoleMapper roleMapper;
-    @Autowired
-    PasswordEncoder encoder;
 
     @Autowired
     JwtUtils jwtUtils;
 
-    //todo и тут
-// ещё не понимаю, что именно мне надо хранить в токене(ну в плане роль, логин, а в остальном не уверена. и не совсем уверена, где это определяется, поэтому я нигде и не меняла то
-// , что есть
     @PostMapping("/signin")
 
     public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
