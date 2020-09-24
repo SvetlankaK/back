@@ -7,6 +7,7 @@ import com.svetakvetko.mapper.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
@@ -25,9 +26,12 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private RoleService roleService;
 
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     @Override
     public void create(User user) {
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
         userMapper.create(user);
         user.setUserId(userMapper.getIdByLogin(user.getUserLogin()));
         Map<String, Object> userRole = new HashMap();
@@ -45,6 +49,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User findById(Long userId) {
+
         User user = userMapper.findById(userId);
         if (user != null) {
             user.setRole(roleService.getRolesById(userId));
@@ -65,6 +70,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void update(User user, long userId) {
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
         user.setUserId(userId);
         userMapper.update(user);
         Map<String, Object> userRole = new HashMap();
