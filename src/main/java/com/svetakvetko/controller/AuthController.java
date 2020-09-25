@@ -43,15 +43,13 @@ public class AuthController {
         String jwt = jwtUtils.generateJwtToken(authentication);
 
         User userDetails = (User) authentication.getPrincipal();
-        List<String> roles = userDetails.getAuthorities().stream()
-                .map(GrantedAuthority::getAuthority)
-                .collect(Collectors.toList());
+
 
         return ResponseEntity.ok(new JwtResponse(jwt,
                 userDetails.getUserId(),
                 userDetails.getName(),
                 userDetails.getUserLogin(),
-                roles));
+                userDetails.getRole()));
     }
 
     @PostMapping("/register")

@@ -17,6 +17,7 @@ public class UserController {
     private UserService service;
 
 
+
     @GetMapping()
     Collection<User> findAll() {
         return service.findAll();
@@ -41,6 +42,5 @@ public class UserController {
     void delete(@PathVariable Long userId) {
         service.delete(userId);
     }
-
 
 }
