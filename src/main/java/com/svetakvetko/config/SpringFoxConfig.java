@@ -19,9 +19,9 @@ public class SpringFoxConfig {
     public Docket api() {
       Parameter headers = new ParameterBuilder()
           .name("Authorization")
-          .modelRef(new ModelRef("string")) // data-type of the header
-          .required(false) // required/optional
-          .parameterType("header") // for query-param, this value can be 'query'
+          .modelRef(new ModelRef("string"))
+          .required(false)
+          .parameterType("header")
           .description("Auth Token")
           .build();
       return new Docket(DocumentationType.SWAGGER_2)
