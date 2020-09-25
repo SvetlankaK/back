@@ -32,6 +32,7 @@ public class User implements UserDetails {
 
 
     private String dateOfBirth;
+
     private long userId;
 
 

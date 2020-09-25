@@ -21,10 +21,10 @@ import javax.validation.Valid;
 public class AuthController {
 
     @Autowired
-    AuthenticationManager authenticationManager;
+    private AuthenticationManager authenticationManager;
 
     @Autowired
-    JwtUtils jwtUtils;
+    private JwtUtils jwtUtils;
 
     @Autowired
     private UserService service;
@@ -39,7 +39,6 @@ public class AuthController {
         String jwt = jwtUtils.generateJwtToken(authentication);
 
         User userDetails = (User) authentication.getPrincipal();
-
 
         return ResponseEntity.ok(new JwtResponse(jwt,
                 userDetails.getUserId(),

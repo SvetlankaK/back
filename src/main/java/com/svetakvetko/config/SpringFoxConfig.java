@@ -15,6 +15,7 @@ import java.util.Collections;
 
 @Configuration
 public class SpringFoxConfig {
+
     @Bean
     public Docket api() {
       Parameter headers = new ParameterBuilder()
