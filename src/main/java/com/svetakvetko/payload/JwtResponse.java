@@ -1,5 +1,7 @@
 package com.svetakvetko.payload;
 
+import com.svetakvetko.domain.Role;
+
 import java.util.List;
 
 public class JwtResponse {
@@ -7,13 +9,16 @@ public class JwtResponse {
     private String type = "Bearer";
     private Long id;
     private String userLogin;
+    private String name;
     private List<String> roles;
 
-    public JwtResponse(String accessToken, Long id, String userLogin,  List<String> roles) {
+    public JwtResponse(String accessToken, Long id, String name, String userLogin,  List<String> roles) {
         this.token = accessToken;
+        this.name = name;
         this.id = id;
         this.userLogin = userLogin;
         this.roles = roles;
+
     }
 
     public String getAccessToken() {
@@ -49,7 +54,15 @@ public class JwtResponse {
     }
 
 
-    public List<String> getRoles() {
+    public  List<String> getRoles() {
         return roles;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }

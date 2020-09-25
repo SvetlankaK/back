@@ -5,6 +5,7 @@ import com.svetakvetko.domain.User;
 
 import com.svetakvetko.payload.JwtResponse;
 import com.svetakvetko.payload.LoginRequest;
+import com.svetakvetko.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -21,17 +22,18 @@ import java.util.stream.Collectors;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
-@RequestMapping("/api/auth")
 public class AuthController {
 
     @Autowired
     AuthenticationManager authenticationManager;
 
-
     @Autowired
     JwtUtils jwtUtils;
 
-    @PostMapping("/signin")
+    @Autowired
+    private UserService service;
+
+    @PostMapping("/api/auth/signin")
     public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
 
         Authentication authentication = authenticationManager.authenticate(
@@ -47,9 +49,14 @@ public class AuthController {
 
         return ResponseEntity.ok(new JwtResponse(jwt,
                 userDetails.getUserId(),
+                userDetails.getName(),
                 userDetails.getUserLogin(),
                 roles));
     }
 
+    @PostMapping("/register")
+    void create(@RequestBody User user) {
+        service.create(user);
+    }
 
 }
