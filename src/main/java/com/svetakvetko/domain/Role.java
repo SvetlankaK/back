@@ -1,5 +1,6 @@
 package com.svetakvetko.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.security.core.GrantedAuthority;
 
 public class Role implements GrantedAuthority {
@@ -29,6 +30,7 @@ public class Role implements GrantedAuthority {
     }
 
     @Override
+    @JsonIgnore
     public String getAuthority() {
         return getRoleName();
     }
