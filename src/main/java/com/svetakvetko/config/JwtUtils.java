@@ -1,6 +1,8 @@
 package com.svetakvetko.config;
 
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 import com.svetakvetko.domain.User;
 import org.slf4j.Logger;
@@ -25,7 +27,11 @@ public class JwtUtils {
 
         User userPrincipal = (User) authentication.getPrincipal();
 
+        Map<String, Object> claims = new HashMap<>();
+        claims.put("role", userPrincipal.getRole());
+        claims.put("name", userPrincipal.getName());
         return Jwts.builder()
+                .setClaims(claims)
                 .setSubject((userPrincipal.getUserLogin()))
                 .setIssuedAt(new Date())
                 .setExpiration(new Date((new Date()).getTime() + jwtExpirationMs))

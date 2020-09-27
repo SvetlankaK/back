@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 
 
-@CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
 public class AuthController {
 
@@ -49,7 +48,7 @@ public class AuthController {
 
     @PostMapping("/register")
     void create(@RequestBody User user) {
-        service.create(user);
+        service.register(user);
     }
 
 }

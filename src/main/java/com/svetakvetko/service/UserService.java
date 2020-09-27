@@ -19,5 +19,7 @@ public interface UserService extends UserDetailsService {
 
     User findByLogin(String userLogin);
 
+    void register(User user);
+
 
 }

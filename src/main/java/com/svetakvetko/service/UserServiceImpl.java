@@ -1,6 +1,7 @@
 package com.svetakvetko.service;
 
 
+import com.svetakvetko.domain.Role;
 import com.svetakvetko.domain.User;
 import com.svetakvetko.mapper.RoleMapper;
 import com.svetakvetko.mapper.UserMapper;
@@ -70,7 +71,6 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void update(User user, long userId) {
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
         user.setUserId(userId);
         userMapper.update(user);
         Map<String, Object> userRole = new HashMap();
@@ -85,7 +85,9 @@ public class UserServiceImpl implements UserService {
     @Override
     public User findByLogin(String userLogin) {
         User user = userMapper.findByLogin(userLogin);
-        user.setRole(roleService.getRolesById(user.getUserId()));
+        if (user  != null) {
+            user.setRole(roleService.getRolesById(user.getUserId()));
+        }
         return user;
     }
 
@@ -98,6 +100,11 @@ public class UserServiceImpl implements UserService {
         return user;
     }
 
+    @Override
+    public void register(User user) {
+        user.setRole(Collections.singletonList(new Role(1, "user")));
+        create(user);
+    }
 }
 
 
