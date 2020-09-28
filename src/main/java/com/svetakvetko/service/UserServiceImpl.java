@@ -50,7 +50,6 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User findById(Long userId) {
-
         User user = userMapper.findById(userId);
         if (user != null) {
             user.setRole(roleService.getRolesById(userId));
@@ -85,7 +84,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public User findByLogin(String userLogin) {
         User user = userMapper.findByLogin(userLogin);
-        if (user  != null) {
+        if (user != null) {
             user.setRole(roleService.getRolesById(user.getUserId()));
         }
         return user;
@@ -104,6 +103,11 @@ public class UserServiceImpl implements UserService {
     public void register(User user) {
         user.setRole(Collections.singletonList(new Role(1, "user")));
         create(user);
+    }
+
+    @Override
+    public boolean uniqueLogin(String userLogin) {
+        return this.findByLogin(userLogin) == null;
     }
 }
 

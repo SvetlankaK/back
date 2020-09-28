@@ -15,11 +15,12 @@ public interface UserService extends UserDetailsService {
 
     List<User> findAll();
 
-    void update(User user,long userId);
+    void update(User user, long userId);
 
     User findByLogin(String userLogin);
 
     void register(User user);
 
+    boolean uniqueLogin(String userLogin);
 
 }

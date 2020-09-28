@@ -13,6 +13,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
+
 import javax.validation.Valid;
 
 
@@ -49,6 +50,11 @@ public class AuthController {
     @PostMapping("/register")
     void create(@RequestBody User user) {
         service.register(user);
+    }
+
+    @GetMapping("/check/login/{userLogin}")
+    boolean checkLoginIsUnique(@PathVariable String userLogin) {
+        return service.uniqueLogin(userLogin);
     }
 
 }
